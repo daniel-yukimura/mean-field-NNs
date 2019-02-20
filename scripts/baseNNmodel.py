@@ -37,11 +37,11 @@ class NeuralNet(nn.Module):
         for l, layer in enumerate(self.layers):
             l_x = layer(x)
 
-        if l>0 and self.averaging:
-            l_x = torch.div(l_x, self.hidden_dims[l-1])
+            if l>0 and self.averaging:
+                l_x = torch.div(l_x, self.hidden_dims[l-1])
 
-        #ReLU is forced here, the class can be improved to flexibilize this hyperparameter
-        if l < self.n_layers:
-            x = F.relu(l_x)
+            #ReLU is forced here, the class can be improved to flexibilize this hyperparameter
+            if l < self.n_layers:
+                x = F.relu(l_x)
 
         return l_x
